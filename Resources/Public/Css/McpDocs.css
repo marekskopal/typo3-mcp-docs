@@ -1,0 +1,68 @@
+.msmcpdocs-wrapper {
+    max-width: 900px;
+}
+
+.msmcpdocs__tool {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.msmcpdocs__tool-name {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.msmcpdocs__tool-name code {
+    background: #f5f5f5;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+}
+
+.msmcpdocs__tool-description {
+    margin: 0 0 1rem;
+    color: #555;
+}
+
+.msmcpdocs__params {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.msmcpdocs__params th,
+.msmcpdocs__params td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.msmcpdocs__params thead th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+.msmcpdocs__params code {
+    background: #f0f0f0;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.msmcpdocs__params small {
+    color: #777;
+}
+
+.msmcpdocs__error {
+    color: #c00;
+    padding: 1rem;
+    background: #fff5f5;
+    border: 1px solid #fcc;
+    border-radius: 4px;
+}
+
+.msmcpdocs__empty {
+    color: #999;
+    font-style: italic;
+}

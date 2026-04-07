@@ -1,0 +1,21 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:if condition="{error}">
+        <p class="msmcpdocs__error">{error}</p>
+    </f:if>
+    <f:if condition="{tools}">
+        <f:then>
+            <f:for each="{tools}" as="tool">
+                <f:render partial="Tool/Item" arguments="{tool: tool, displayMode: displayMode}" />
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:if condition="{error}">
+                <f:else>
+                    <p class="msmcpdocs__empty"><f:translate key="plugin.mcpdocs.empty" /></p>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</f:section>

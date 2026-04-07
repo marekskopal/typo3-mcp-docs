@@ -1,0 +1,41 @@
+<div class="msmcpdocs__tool" id="tool-{tool.name}">
+    <h3 class="msmcpdocs__tool-name"><code>{tool.name}</code></h3>
+    <p class="msmcpdocs__tool-description">{tool.description}</p>
+    <f:if condition="{displayMode} == 'full'">
+        <f:if condition="{tool.parameters}">
+            <table class="msmcpdocs__params">
+                <thead>
+                    <tr>
+                        <th><f:translate key="plugin.mcpdocs.parameter" /></th>
+                        <th><f:translate key="plugin.mcpdocs.type" /></th>
+                        <th><f:translate key="plugin.mcpdocs.required" /></th>
+                        <th><f:translate key="plugin.mcpdocs.description" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{tool.parameters}" as="param">
+                        <tr>
+                            <td><code>{param.name}</code></td>
+                            <td><code>{param.type}</code></td>
+                            <td>
+                                <f:if condition="{param.required}">
+                                    <f:then><f:translate key="plugin.mcpdocs.yes" /></f:then>
+                                    <f:else><f:translate key="plugin.mcpdocs.no" /></f:else>
+                                </f:if>
+                            </td>
+                            <td>
+                                {param.description}
+                                <f:if condition="{param.enum}">
+                                    <br /><small><f:translate key="plugin.mcpdocs.allowed_values" />: <code>{param.enum}</code></small>
+                                </f:if>
+                                <f:if condition="{param.default}">
+                                    <br /><small><f:translate key="plugin.mcpdocs.default" />: <code>{param.default}</code></small>
+                                </f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+        </f:if>
+    </f:if>
+</div>

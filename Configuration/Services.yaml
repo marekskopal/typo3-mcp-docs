@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  MarekSkopal\MsMcpDocs\:
+    resource: '../Classes/*'
+
+  cache.msmcpdocs:
+    class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
+    factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    arguments: ['msmcpdocs']
+
+  MarekSkopal\MsMcpDocs\Service\McpIntrospectionService:
+    arguments:
+      $cache: '@cache.msmcpdocs'

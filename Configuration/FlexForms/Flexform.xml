@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.sheet_general</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.mcpServerUrl>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.mcp_server_url</label>
+                        <config>
+                            <type>input</type>
+                            <size>50</size>
+                            <eval>trim</eval>
+                            <placeholder>https://example.com/api/mcp</placeholder>
+                        </config>
+                    </settings.mcpServerUrl>
+                    <settings.mcpApiKey>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.mcp_api_key</label>
+                        <config>
+                            <type>input</type>
+                            <size>50</size>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.mcpApiKey>
+                    <settings.displayMode>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.display_mode</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0" type="array">
+                                    <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.display_mode.full</label>
+                                    <value>full</value>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.display_mode.overview</label>
+                                    <value>overview</value>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.displayMode>
+                    <settings.filterTools>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.filter_tools</label>
+                        <config>
+                            <type>input</type>
+                            <size>50</size>
+                            <eval>trim</eval>
+                            <placeholder>list_portfolios,get_portfolio_summary</placeholder>
+                        </config>
+                    </settings.filterTools>
+                 </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

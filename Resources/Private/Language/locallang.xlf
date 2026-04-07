@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-04-07T00:00:00Z" product-name="ms_mcp_docs">
+        <header/>
+        <body>
+            <trans-unit id="plugin.mcpdocs.empty" resname="plugin.mcpdocs.empty">
+                <source>No MCP tools available.</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.parameter" resname="plugin.mcpdocs.parameter">
+                <source>Parameter</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.type" resname="plugin.mcpdocs.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.required" resname="plugin.mcpdocs.required">
+                <source>Required</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.description" resname="plugin.mcpdocs.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.yes" resname="plugin.mcpdocs.yes">
+                <source>Yes</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.no" resname="plugin.mcpdocs.no">
+                <source>No</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.allowed_values" resname="plugin.mcpdocs.allowed_values">
+                <source>Allowed values</source>
+            </trans-unit>
+            <trans-unit id="plugin.mcpdocs.default" resname="plugin.mcpdocs.default">
+                <source>Default</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

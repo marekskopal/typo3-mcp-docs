@@ -1,0 +1,7 @@
+plugin.tx_msmcpdocs_mcpdocs {
+    view {
+        templateRootPath =
+        partialRootPath =
+        layoutRootPath =
+    }
+}
