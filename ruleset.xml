@@ -320,7 +320,7 @@
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
             <property name="rootNamespaces" type="array">
-                <element key="Classes" value="MarekSkopal\MsFaq"/>
+                <element key="Classes" value="MarekSkopal\MsMcpDocs"/>
             </property>
         </properties>
     </rule>
