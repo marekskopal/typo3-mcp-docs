@@ -17,8 +17,9 @@ final readonly class McpResponseParser
             return [];
         }
 
-        /** @var array{result?: array{tools?: list<array{name: string, description?: string, inputSchema?: array<string, mixed>}>}} $jsonData */
-        $toolsData = $jsonData['result']['tools'] ?? [];
+        /** @var array{result?: array{tools?: list<array{name: string, description?: string, inputSchema?: array<string, mixed>}>}} $toolsResult */
+        $toolsResult = $jsonData;
+        $toolsData = $toolsResult['result']['tools'] ?? [];
 
         $tools = [];
         foreach ($toolsData as $toolData) {
@@ -67,8 +68,9 @@ final readonly class McpResponseParser
         foreach ($properties as $paramName => $paramData) {
             $rawType = $paramData['type'] ?? 'string';
             if (is_array($rawType)) {
-                /** @var list<string> $rawType */
-                $type = implode('|', $rawType);
+                /** @var list<string> $rawTypeList */
+                $rawTypeList = $rawType;
+                $type = implode('|', $rawTypeList);
             } else {
                 $type = is_string($rawType) ? $rawType : 'string';
             }
@@ -76,8 +78,9 @@ final readonly class McpResponseParser
             $enumValue = null;
             $rawEnum = $paramData['enum'] ?? null;
             if (is_array($rawEnum)) {
-                /** @var list<string> $rawEnum */
-                $enumValue = implode(', ', $rawEnum);
+                /** @var list<string> $rawEnumList */
+                $rawEnumList = $rawEnum;
+                $enumValue = implode(', ', $rawEnumList);
             }
 
             $default = null;
@@ -110,12 +113,12 @@ final readonly class McpResponseParser
     /** @return array<string, mixed>|null */
     private function decodeJson(string $json): ?array
     {
+        /** @var array<string, mixed>|scalar|null $decoded */
         $decoded = json_decode($json, true);
         if (!is_array($decoded)) {
             return null;
         }
 
-        /** @var array<string, mixed> */
         return $decoded;
     }
 }
