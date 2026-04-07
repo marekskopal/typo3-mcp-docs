@@ -7,6 +7,7 @@ namespace MarekSkopal\MsMcpDocs\Controller;
 use MarekSkopal\MsMcpDocs\Service\McpIntrospectionService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class McpDocsController extends ActionController
 {
@@ -32,7 +33,7 @@ class McpDocsController extends ActionController
 
         if ($serverUrl === '' || $apiKey === '') {
             $this->view->assign('tools', []);
-            $this->view->assign('error', 'MCP server URL and API key must be configured.');
+            $this->view->assign('error', LocalizationUtility::translate('plugin.mcpdocs.error.missing_configuration', 'MsMcpDocs'));
             return $this->htmlResponse();
         }
 
@@ -46,7 +47,10 @@ class McpDocsController extends ActionController
             $tools = $this->mcpIntrospectionService->getTools($serverUrl, $apiKey, $filterTools);
         } catch (\Throwable $e) {
             $this->view->assign('tools', []);
-            $this->view->assign('error', 'Failed to fetch MCP tools: ' . $e->getMessage());
+            $this->view->assign('error', sprintf(
+                LocalizationUtility::translate('plugin.mcpdocs.error.fetch_failed', 'MsMcpDocs') ?? 'Failed to fetch MCP tools: %s',
+                $e->getMessage(),
+            ));
             return $this->htmlResponse();
         }
 

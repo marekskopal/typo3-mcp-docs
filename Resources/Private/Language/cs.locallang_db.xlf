@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="cs" datatype="plaintext" original="messages" date="2026-04-07T00:00:00Z" product-name="ms_mcp_docs">
+        <header/>
+        <body>
+            <trans-unit id="flexform.sheet_general" resname="flexform.sheet_general">
+                <source>General</source>
+                <target>Obecné</target>
+            </trans-unit>
+            <trans-unit id="flexform.mcp_server_url" resname="flexform.mcp_server_url">
+                <source>MCP Server URL</source>
+                <target>URL MCP serveru</target>
+            </trans-unit>
+            <trans-unit id="flexform.mcp_api_key" resname="flexform.mcp_api_key">
+                <source>MCP API Key</source>
+                <target>API klíč MCP</target>
+            </trans-unit>
+            <trans-unit id="flexform.description" resname="flexform.description">
+                <source>Description</source>
+                <target>Popis</target>
+            </trans-unit>
+            <trans-unit id="flexform.display_mode" resname="flexform.display_mode">
+                <source>Display mode</source>
+                <target>Režim zobrazení</target>
+            </trans-unit>
+            <trans-unit id="flexform.display_mode.full" resname="flexform.display_mode.full">
+                <source>Full reference</source>
+                <target>Úplná reference</target>
+            </trans-unit>
+            <trans-unit id="flexform.display_mode.overview" resname="flexform.display_mode.overview">
+                <source>Overview</source>
+                <target>Přehled</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter_tools" resname="flexform.filter_tools">
+                <source>Filter tools (comma-separated names, empty = all)</source>
+                <target>Filtrovat nástroje (názvy oddělené čárkou, prázdné = vše)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

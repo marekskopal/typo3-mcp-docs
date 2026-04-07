@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" date="2026-04-07T00:00:00Z" product-name="ms_mcp_docs">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2026-04-07T00:00:00Z" product-name="ms_mcp_docs">
         <header/>
         <body>
             <trans-unit id="plugin.mcpdocs.empty" resname="plugin.mcpdocs.empty">
                 <source>No MCP tools available.</source>
+                <target>Keine MCP-Tools verfügbar.</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.parameter" resname="plugin.mcpdocs.parameter">
                 <source>Parameter</source>
+                <target>Parameter</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.type" resname="plugin.mcpdocs.type">
                 <source>Type</source>
+                <target>Typ</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.required" resname="plugin.mcpdocs.required">
                 <source>Required</source>
+                <target>Erforderlich</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.description" resname="plugin.mcpdocs.description">
                 <source>Description</source>
+                <target>Beschreibung</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.yes" resname="plugin.mcpdocs.yes">
                 <source>Yes</source>
+                <target>Ja</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.no" resname="plugin.mcpdocs.no">
                 <source>No</source>
+                <target>Nein</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.allowed_values" resname="plugin.mcpdocs.allowed_values">
                 <source>Allowed values</source>
+                <target>Erlaubte Werte</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.default" resname="plugin.mcpdocs.default">
                 <source>Default</source>
+                <target>Standard</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.error.missing_configuration" resname="plugin.mcpdocs.error.missing_configuration">
                 <source>MCP server URL and API key must be configured.</source>
+                <target>MCP-Server-URL und API-Schlüssel müssen konfiguriert werden.</target>
             </trans-unit>
             <trans-unit id="plugin.mcpdocs.error.fetch_failed" resname="plugin.mcpdocs.error.fetch_failed">
                 <source>Failed to fetch MCP tools: %s</source>
+                <target>MCP-Tools konnten nicht abgerufen werden: %s</target>
             </trans-unit>
         </body>
     </file>
