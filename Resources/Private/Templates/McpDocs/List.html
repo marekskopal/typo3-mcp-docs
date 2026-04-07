@@ -4,6 +4,9 @@
     <f:if condition="{error}">
         <p class="msmcpdocs__error">{error}</p>
     </f:if>
+    <f:if condition="{description}">
+        <div class="msmcpdocs__description"><f:format.html>{description}</f:format.html></div>
+    </f:if>
     <f:if condition="{tools}">
         <f:then>
             <f:for each="{tools}" as="tool">

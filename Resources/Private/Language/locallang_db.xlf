@@ -12,6 +12,9 @@
             <trans-unit id="flexform.mcp_api_key" resname="flexform.mcp_api_key">
                 <source>MCP API Key</source>
             </trans-unit>
+            <trans-unit id="flexform.description" resname="flexform.description">
+                <source>Description</source>
+            </trans-unit>
             <trans-unit id="flexform.display_mode" resname="flexform.display_mode">
                 <source>Display mode</source>
             </trans-unit>

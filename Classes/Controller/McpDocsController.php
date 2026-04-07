@@ -20,6 +20,7 @@ class McpDocsController extends ActionController
          * @var array{
          *     mcpServerUrl?: string,
          *     mcpApiKey?: string,
+         *     description?: string,
          *     displayMode?: string,
          *     filterTools?: string,
          *  } $settings
@@ -58,9 +59,12 @@ class McpDocsController extends ActionController
             $groups[$group][] = $tool;
         }
 
+        $description = $settings['description'] ?? '';
+
         $this->view->assign('tools', $tools);
         $this->view->assign('groups', $groups);
         $this->view->assign('displayMode', $displayMode);
+        $this->view->assign('description', $description);
 
         return $this->htmlResponse();
     }

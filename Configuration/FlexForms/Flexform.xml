@@ -23,6 +23,15 @@
                             <eval>trim</eval>
                         </config>
                     </settings.mcpApiKey>
+                    <settings.description>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.description</label>
+                        <config>
+                            <type>text</type>
+                            <enableRichtext>true</enableRichtext>
+                            <rows>8</rows>
+                            <cols>48</cols>
+                        </config>
+                    </settings.description>
                     <settings.displayMode>
                         <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.display_mode</label>
                         <config>
