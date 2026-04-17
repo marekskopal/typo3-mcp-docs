@@ -31,6 +31,22 @@
                 <source>Overview</source>
                 <target>Přehled</target>
             </trans-unit>
+            <trans-unit id="flexform.auth_type" resname="flexform.auth_type">
+                <source>Authentication type</source>
+                <target>Typ autentizace</target>
+            </trans-unit>
+            <trans-unit id="flexform.auth_type.bearer" resname="flexform.auth_type.bearer">
+                <source>Bearer Token</source>
+                <target>Bearer Token</target>
+            </trans-unit>
+            <trans-unit id="flexform.auth_type.oauth" resname="flexform.auth_type.oauth">
+                <source>OAuth 2.1 (PKCE)</source>
+                <target>OAuth 2.1 (PKCE)</target>
+            </trans-unit>
+            <trans-unit id="flexform.oauth_status" resname="flexform.oauth_status">
+                <source>OAuth Status</source>
+                <target>Stav OAuth</target>
+            </trans-unit>
             <trans-unit id="flexform.filter_tools" resname="flexform.filter_tools">
                 <source>Filter tools (comma-separated names, empty = all)</source>
                 <target>Filtrovat nástroje (názvy oddělené čárkou, prázdné = vše)</target>

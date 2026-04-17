@@ -26,7 +26,7 @@ final readonly class McpIntrospectionService
      * @param list<string>|null $filterTools
      * @return list<McpTool>
      */
-    public function getTools(string $serverUrl, string $apiKey, ?array $filterTools = null): array
+    public function getTools(string $serverUrl, string $authToken, ?array $filterTools = null): array
     {
         $cacheKey = self::CacheIdentifier . '_' . md5($serverUrl);
 
@@ -36,7 +36,7 @@ final readonly class McpIntrospectionService
             return self::filterTools($cached, $filterTools);
         }
 
-        $tools = $this->fetchTools($serverUrl, $apiKey);
+        $tools = $this->fetchTools($serverUrl, $authToken);
 
         $this->cache->set($cacheKey, $tools, [], self::CacheLifetime);
 
@@ -44,13 +44,13 @@ final readonly class McpIntrospectionService
     }
 
     /** @return list<McpTool> */
-    private function fetchTools(string $serverUrl, string $apiKey): array
+    private function fetchTools(string $serverUrl, string $authToken): array
     {
         $sessionResponse = $this->requestFactory->request($serverUrl, 'POST', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json, text/event-stream',
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer ' . $authToken,
             ],
             'body' => json_encode([
                 'jsonrpc' => '2.0',
@@ -77,7 +77,7 @@ final readonly class McpIntrospectionService
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json, text/event-stream',
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer ' . $authToken,
                 'Mcp-Session-Id' => $sessionId,
             ],
             'body' => json_encode([
@@ -91,7 +91,7 @@ final readonly class McpIntrospectionService
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json, text/event-stream',
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer ' . $authToken,
                 'Mcp-Session-Id' => $sessionId,
             ],
             'body' => json_encode([
@@ -104,7 +104,7 @@ final readonly class McpIntrospectionService
         // Terminate session
         $this->requestFactory->request($serverUrl, 'DELETE', [
             'headers' => [
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer ' . $authToken,
                 'Mcp-Session-Id' => $sessionId,
             ],
         ]);

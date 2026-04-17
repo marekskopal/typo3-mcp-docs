@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace MarekSkopal\MsMcpDocs\Controller;
 
 use MarekSkopal\MsMcpDocs\Service\McpIntrospectionService;
+use MarekSkopal\MsMcpDocs\Service\OAuthTokenService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class McpDocsController extends ActionController
 {
-    public function __construct(private readonly McpIntrospectionService $mcpIntrospectionService)
-    {
+    public function __construct(
+        private readonly McpIntrospectionService $mcpIntrospectionService,
+        private readonly OAuthTokenService $oAuthTokenService,
+    ) {
     }
 
     public function listAction(): ResponseInterface
@@ -21,6 +24,7 @@ class McpDocsController extends ActionController
          * @var array{
          *     mcpServerUrl?: string,
          *     mcpApiKey?: string,
+         *     authType?: string,
          *     description?: string,
          *     displayMode?: string,
          *     filterTools?: string,
@@ -29,11 +33,21 @@ class McpDocsController extends ActionController
         $settings = $this->settings;
 
         $serverUrl = trim($settings['mcpServerUrl'] ?? '');
-        $apiKey = trim($settings['mcpApiKey'] ?? '');
+        $authType = $settings['authType'] ?? 'bearer';
 
-        if ($serverUrl === '' || $apiKey === '') {
+        if ($serverUrl === '') {
             $this->view->assign('tools', []);
             $this->view->assign('error', LocalizationUtility::translate('plugin.mcpdocs.error.missing_configuration', 'MsMcpDocs'));
+            return $this->htmlResponse();
+        }
+
+        $authToken = $this->resolveAuthToken($serverUrl, $authType, $settings);
+        if ($authToken === null) {
+            $this->view->assign('tools', []);
+            $errorKey = $authType === 'oauth'
+                ? 'plugin.mcpdocs.error.oauth_not_authorized'
+                : 'plugin.mcpdocs.error.missing_configuration';
+            $this->view->assign('error', LocalizationUtility::translate($errorKey, 'MsMcpDocs'));
             return $this->htmlResponse();
         }
 
@@ -44,7 +58,7 @@ class McpDocsController extends ActionController
         }
 
         try {
-            $tools = $this->mcpIntrospectionService->getTools($serverUrl, $apiKey, $filterTools);
+            $tools = $this->mcpIntrospectionService->getTools($serverUrl, $authToken, $filterTools);
         } catch (\Throwable $e) {
             $this->view->assign('tools', []);
             $this->view->assign('error', sprintf(
@@ -71,5 +85,28 @@ class McpDocsController extends ActionController
         $this->view->assign('description', $description);
 
         return $this->htmlResponse();
+    }
+
+    /**
+     * @param array{mcpApiKey?: string} $settings
+     */
+    private function resolveAuthToken(string $serverUrl, string $authType, array $settings): ?string
+    {
+        if ($authType === 'oauth') {
+            $contentObject = $this->request->getAttribute('currentContentObject');
+            $uid = $contentObject instanceof \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
+                ? ($contentObject->data['uid'] ?? 0)
+                : 0;
+            $contentElementUid = is_int($uid) ? $uid : (is_string($uid) ? (int) $uid : 0);
+            if ($contentElementUid === 0) {
+                return null;
+            }
+
+            return $this->oAuthTokenService->getValidAccessToken($contentElementUid, $serverUrl);
+        }
+
+        // Bearer token (default / backward compatible)
+        $apiKey = trim($settings['mcpApiKey'] ?? '');
+        return $apiKey !== '' ? $apiKey : null;
     }
 }

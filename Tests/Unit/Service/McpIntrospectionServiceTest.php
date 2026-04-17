@@ -30,7 +30,7 @@ final class McpIntrospectionServiceTest extends TestCase
         $requestFactory->expects(self::never())->method('request');
 
         $service = new McpIntrospectionService($requestFactory, $cache, new McpResponseParser());
-        $result = $service->getTools('https://example.com/mcp', 'key');
+        $result = $service->getTools('https://example.com/mcp', 'token');
 
         self::assertCount(2, $result);
         self::assertSame('tool_a', $result[0]->name);
@@ -54,7 +54,7 @@ final class McpIntrospectionServiceTest extends TestCase
             new McpResponseParser(),
         );
 
-        $result = $service->getTools('https://example.com/mcp', 'key', ['tool_a', 'tool_c']);
+        $result = $service->getTools('https://example.com/mcp', 'token', ['tool_a', 'tool_c']);
 
         self::assertCount(2, $result);
         self::assertSame('tool_a', $result[0]->name);
@@ -75,7 +75,7 @@ final class McpIntrospectionServiceTest extends TestCase
             new McpResponseParser(),
         );
 
-        $service->getTools('https://example.com/mcp', 'key');
+        $service->getTools('https://example.com/mcp', 'token');
     }
 
     public function testFilterToolsReturnsAllWhenFilterIsNull(): void

@@ -15,14 +15,41 @@
                             <placeholder>https://example.com/api/mcp</placeholder>
                         </config>
                     </settings.mcpServerUrl>
+                    <settings.authType>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.auth_type</label>
+                        <onChange>reload</onChange>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0" type="array">
+                                    <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.auth_type.bearer</label>
+                                    <value>bearer</value>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.auth_type.oauth</label>
+                                    <value>oauth</value>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.authType>
                     <settings.mcpApiKey>
                         <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.mcp_api_key</label>
+                        <displayCond>FIELD:settings.authType:=:bearer</displayCond>
                         <config>
                             <type>input</type>
                             <size>50</size>
                             <eval>trim</eval>
                         </config>
                     </settings.mcpApiKey>
+                    <settings.oauthStatus>
+                        <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.oauth_status</label>
+                        <displayCond>FIELD:settings.authType:=:oauth</displayCond>
+                        <config>
+                            <type>user</type>
+                            <renderType>oauthStatus</renderType>
+                        </config>
+                    </settings.oauthStatus>
                     <settings.description>
                         <label>LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:flexform.description</label>
                         <config>

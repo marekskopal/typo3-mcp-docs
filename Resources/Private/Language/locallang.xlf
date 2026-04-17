@@ -33,6 +33,9 @@
             <trans-unit id="plugin.mcpdocs.error.missing_configuration" resname="plugin.mcpdocs.error.missing_configuration">
                 <source>MCP server URL and API key must be configured.</source>
             </trans-unit>
+            <trans-unit id="plugin.mcpdocs.error.oauth_not_authorized" resname="plugin.mcpdocs.error.oauth_not_authorized">
+                <source>OAuth authorization required. Please authorize in the TYPO3 backend.</source>
+            </trans-unit>
             <trans-unit id="plugin.mcpdocs.error.fetch_failed" resname="plugin.mcpdocs.error.fetch_failed">
                 <source>Failed to fetch MCP tools: %s</source>
             </trans-unit>

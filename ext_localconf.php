@@ -15,6 +15,12 @@ ExtensionUtility::configurePlugin(
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1713350000] = [
+    'nodeName' => 'oauthStatus',
+    'priority' => 40,
+    'class' => \MarekSkopal\MsMcpDocs\Form\Element\OAuthStatusElement::class,
+];
+
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['msmcpdocs'] ??= [
     'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
     'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,

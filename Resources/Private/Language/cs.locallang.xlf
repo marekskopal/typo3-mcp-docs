@@ -43,6 +43,10 @@
                 <source>MCP server URL and API key must be configured.</source>
                 <target>URL MCP serveru a API klíč musí být nakonfigurovány.</target>
             </trans-unit>
+            <trans-unit id="plugin.mcpdocs.error.oauth_not_authorized" resname="plugin.mcpdocs.error.oauth_not_authorized">
+                <source>OAuth authorization required. Please authorize in the TYPO3 backend.</source>
+                <target>Je vyžadována OAuth autorizace. Autorizujte se v administraci TYPO3.</target>
+            </trans-unit>
             <trans-unit id="plugin.mcpdocs.error.fetch_failed" resname="plugin.mcpdocs.error.fetch_failed">
                 <source>Failed to fetch MCP tools: %s</source>
                 <target>Nepodařilo se načíst MCP nástroje: %s</target>

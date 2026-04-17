@@ -15,3 +15,10 @@ services:
   MarekSkopal\MsMcpDocs\Service\McpIntrospectionService:
     arguments:
       $cache: '@cache.msmcpdocs'
+
+  MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepositoryInterface:
+    alias: MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepository
+
+  MarekSkopal\MsMcpDocs\Service\OAuthTokenService:
+    arguments:
+      $cache: '@cache.msmcpdocs'
