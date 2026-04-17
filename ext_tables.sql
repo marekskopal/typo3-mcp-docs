@@ -5,6 +5,8 @@ CREATE TABLE tx_msmcpdocs_oauth_token (
     access_token text,
     refresh_token text,
     expires_at int(11) DEFAULT 0 NOT NULL,
+    tstamp int(11) DEFAULT 0 NOT NULL,
+    crdate int(11) DEFAULT 0 NOT NULL,
 
     UNIQUE KEY content_element (content_element_uid)
 );
