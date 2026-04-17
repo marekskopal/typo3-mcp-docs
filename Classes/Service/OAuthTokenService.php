@@ -11,7 +11,6 @@ use MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepositoryInterface;
 use RuntimeException;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
-
 use const JSON_THROW_ON_ERROR;
 
 final readonly class OAuthTokenService
@@ -122,10 +121,7 @@ final readonly class OAuthTokenService
         $codeVerifier = rtrim(strtr(base64_encode(random_bytes(64)), '+/', '-_'), '=');
         $codeChallenge = rtrim(strtr(base64_encode(hash('sha256', $codeVerifier, true)), '+/', '-_'), '=');
 
-        return new PkceChallengePair(
-            codeVerifier: $codeVerifier,
-            codeChallenge: $codeChallenge,
-        );
+        return new PkceChallengePair(codeVerifier: $codeVerifier, codeChallenge: $codeChallenge);
     }
 
     public function buildAuthorizationUrl(

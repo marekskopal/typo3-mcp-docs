@@ -12,6 +12,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use SimpleXMLElement;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -138,7 +139,10 @@ final readonly class OAuthCallbackController
                 'OAuth authorization completed successfully. You can close this window and return to the TYPO3 backend.',
             ));
         } catch (\Throwable $e) {
-            return $this->htmlResponse($this->renderMessage('Token Exchange Failed', 'Failed to obtain tokens: ' . htmlspecialchars($e->getMessage())), 500);
+            return $this->htmlResponse(
+                $this->renderMessage('Token Exchange Failed', 'Failed to obtain tokens: ' . htmlspecialchars($e->getMessage())),
+                500,
+            );
         }
     }
 
@@ -168,14 +172,14 @@ final readonly class OAuthCallbackController
             return null;
         }
 
-        /** @var \SimpleXMLElement $sheet */
+        /** @var SimpleXMLElement $sheet */
         foreach ($sheets as $sheet) {
             $fields = $sheet->language->field ?? null;
             if ($fields === null) {
                 continue;
             }
 
-            /** @var \SimpleXMLElement $field */
+            /** @var SimpleXMLElement $field */
             foreach ($fields as $field) {
                 if ((string) $field['index'] === 'settings.mcpServerUrl') {
                     $value = trim((string) $field->value);

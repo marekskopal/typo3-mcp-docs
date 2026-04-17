@@ -24,7 +24,12 @@ final readonly class OAuthTokenRepository implements OAuthTokenRepositoryInterfa
         $row = $queryBuilder
             ->select('*')
             ->from(self::TableName)
-            ->where($queryBuilder->expr()->eq('content_element_uid', $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER)))
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'content_element_uid',
+                    $queryBuilder->createNamedParameter($contentElementUid, ParameterType::INTEGER),
+                ),
+            )
             ->executeQuery()
             ->fetchAssociative();
 

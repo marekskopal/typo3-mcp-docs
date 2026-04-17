@@ -7,6 +7,7 @@ namespace MarekSkopal\MsMcpDocs\Form\Element;
 use MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepository;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class OAuthStatusElement extends AbstractFormElement
@@ -25,7 +26,10 @@ final class OAuthStatusElement extends AbstractFormElement
             return $result;
         }
 
-        $oAuthTokenRepository = GeneralUtility::makeInstance(OAuthTokenRepository::class);
+        $oAuthTokenRepository = GeneralUtility::makeInstance(
+            OAuthTokenRepository::class,
+            GeneralUtility::makeInstance(ConnectionPool::class),
+        );
         $tokenRow = $oAuthTokenRepository->findByContentElementUid($contentElementUid);
 
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
@@ -48,7 +52,9 @@ final class OAuthStatusElement extends AbstractFormElement
             $result['html'] = '<div class="alert alert-info" style="margin-bottom:10px">'
                 . 'Not authorized — click the button below to authorize with the MCP server.'
                 . '</div>'
-                . '<a href="' . htmlspecialchars($initiateUrl) . '" class="btn btn-primary btn-sm" target="_blank">Authorize with OAuth</a>';
+                . '<a href="' . htmlspecialchars(
+                    $initiateUrl,
+                ) . '" class="btn btn-primary btn-sm" target="_blank">Authorize with OAuth</a>';
         }
 
         return $result;

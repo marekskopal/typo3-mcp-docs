@@ -9,6 +9,7 @@ use MarekSkopal\MsMcpDocs\Service\OAuthTokenService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 class McpDocsController extends ActionController
 {
@@ -87,14 +88,12 @@ class McpDocsController extends ActionController
         return $this->htmlResponse();
     }
 
-    /**
-     * @param array{mcpApiKey?: string} $settings
-     */
+    /** @param array{mcpApiKey?: string} $settings */
     private function resolveAuthToken(string $serverUrl, string $authType, array $settings): ?string
     {
         if ($authType === 'oauth') {
             $contentObject = $this->request->getAttribute('currentContentObject');
-            $uid = $contentObject instanceof \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
+            $uid = $contentObject instanceof ContentObjectRenderer
                 ? ($contentObject->data['uid'] ?? 0)
                 : 0;
             $contentElementUid = is_int($uid) ? $uid : (is_string($uid) ? (int) $uid : 0);
