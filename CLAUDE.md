@@ -27,17 +27,24 @@ composer install
 
 ## Architecture
 
-**Flow:** FlexForm config (server URL, API key) → `McpDocsController::listAction()` → `McpIntrospectionService::getTools()` → HTTP requests to MCP server → cached response → Fluid templates render tool list.
+**Flow:** FlexForm config (server URL, auth type, API key/OAuth) → `McpDocsController::listAction()` → `McpIntrospectionService::getTools()` → HTTP requests to MCP server → cached response → Fluid templates render tool list.
 
 **Key classes (all in `Classes/`):**
 - `Controller/McpDocsController` — Extbase controller with single `listAction`, reads FlexForm settings, groups tools by name prefix
+- `Controller/OAuthCallbackController` — Backend route controller handling OAuth initiate (redirect to auth server) and callback (token exchange) actions
 - `Service/McpIntrospectionService` — MCP protocol client: 3-step session (initialize → notification → tools/list), handles both JSON and SSE responses, caches results for 24h via TYPO3 cache `msmcpdocs`
+- `Service/OAuthTokenService` — OAuth 2.0 client: metadata discovery, dynamic client registration, PKCE challenge generation, token exchange, token refresh, PKCE state storage via cache
+- `Repository/OAuthTokenRepository` — Persists OAuth tokens per content element in `tx_msmcpdocs_oauth_token`
+- `Form/Element/OAuthStatusElement` — Custom TCA render type (`oauthStatus`) showing authorization status and authorize button in FlexForm
 - `Dto/McpTool`, `Dto/McpToolParameter` — Readonly DTOs for tool data
+- `Dto/OAuthServerMetadata`, `Dto/OAuthTokenResponse`, `Dto/PkceChallengePair` — Readonly DTOs for OAuth data
 
 **Configuration:**
-- `Configuration/Services.yaml` — DI config; cache injected via CacheManager factory
-- `Configuration/FlexForms/Flexform.xml` — Plugin settings: mcpServerUrl, mcpApiKey, displayMode (full/overview), filterTools
-- `ext_localconf.php` — Plugin registration and cache configuration
+- `Configuration/Services.yaml` — DI config; cache injected via CacheManager factory; `OAuthCallbackController` registered as public service
+- `Configuration/Backend/Routes.php` — Backend routes for OAuth initiate and callback endpoints
+- `Configuration/FlexForms/Flexform.xml` — Plugin settings: mcpServerUrl, authType (bearer/oauth), mcpApiKey, oauthStatus, displayMode (full/overview), filterTools
+- `ext_localconf.php` — Plugin registration, cache configuration, and `oauthStatus` node registry
+- `ext_tables.sql` — DB schema for `tx_msmcpdocs_oauth_token` table
 - `Configuration/Sets/MsMcpDocs/` — TYPO3 Site Set with TypoScript setup
 
 ## Code Standards
