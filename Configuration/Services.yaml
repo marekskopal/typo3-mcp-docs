@@ -16,6 +16,9 @@ services:
     arguments:
       $cache: '@cache.msmcpdocs'
 
+  MarekSkopal\MsMcpDocs\Controller\OAuthCallbackController:
+    public: true
+
   MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepositoryInterface:
     alias: MarekSkopal\MsMcpDocs\Repository\OAuthTokenRepository
 
