@@ -7,7 +7,11 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die;
 
-$pluginSignature = ExtensionUtility::registerPlugin('MsMcpDocs', 'McpDocs', 'MCP Docs');
+$pluginSignature = ExtensionUtility::registerPlugin(
+    'MsMcpDocs',
+    'McpDocs',
+    'LLL:EXT:ms_mcp_docs/Resources/Private/Language/locallang_db.xlf:plugin.title',
+);
 ExtensionManagementUtility::addPiFlexFormValue('*', 'FILE:EXT:ms_mcp_docs/Configuration/FlexForms/Flexform.xml', $pluginSignature);
 ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',

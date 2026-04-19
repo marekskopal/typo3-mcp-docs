@@ -3,6 +3,10 @@
     <file source-language="en" target-language="cs" datatype="plaintext" original="messages" date="2026-04-07T00:00:00Z" product-name="ms_mcp_docs">
         <header/>
         <body>
+            <trans-unit id="plugin.title" resname="plugin.title">
+                <source>MCP Docs</source>
+                <target>MCP dokumentace</target>
+            </trans-unit>
             <trans-unit id="flexform.sheet_general" resname="flexform.sheet_general">
                 <source>General</source>
                 <target>Obecné</target>
